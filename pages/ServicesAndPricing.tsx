@@ -87,11 +87,11 @@ const ServicesAndPricing: React.FC = () => {
                 </tr>
                 <tr className="border-b border-stone-200">
                   <td className="py-4 font-bold text-stone-800">Holiday Rate</td>
-                  <td className="py-4 text-right text-stone-600">+$10 / visit</td>
+                  <td className="py-4 text-right text-stone-600">+£10 / visit</td>
                 </tr>
                 <tr className="border-b border-stone-200">
                   <td className="py-4 font-bold text-stone-800">Additional Pet</td>
-                  <td className="py-4 text-right text-stone-600">+$5 / pet</td>
+                  <td className="py-4 text-right text-stone-600">+£5 / pet</td>
                 </tr>
               </tbody>
             </table>
@@ -102,9 +102,9 @@ const ServicesAndPricing: React.FC = () => {
                 Add-On Services
               </h4>
               <ul className="text-sm text-brand-900 space-y-1">
-                <li>• Medication Administration: +$5/visit</li>
-                <li>• Plant Watering (Excessive): +$10/visit</li>
-                <li>• Key Pickup/Dropoff: $15</li>
+                <li>• Medication Administration: +£5/visit</li>
+                <li>• Plant Watering (Excessive): +£10/visit</li>
+                <li>• Key Pickup/Dropoff: £15</li>
               </ul>
             </div>
 

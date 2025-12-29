@@ -19,9 +19,9 @@ const AboutAndSafety: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <img 
-              src="https://picsum.photos/id/64/600/800" // Woman portrait
-              alt="Owner" 
-              className="rounded-2xl shadow-xl w-full max-w-md mx-auto z-10 relative"
+              src="/images/20230722_123456.jpg" // Woman portrait
+              alt="Sarah - Owner" 
+              className="rounded-2xl shadow-xl w-full max-w-md mx-auto z-10 relative object-cover"
             />
             <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-brand-200 rounded-2xl -z-0 hidden md:block"></div>
           </div>

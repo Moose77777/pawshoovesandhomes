@@ -7,31 +7,32 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center text-center px-4 overflow-hidden">
+      <section className="relative h-[700px] flex items-center justify-center text-center px-4 overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://picsum.photos/id/1025/1920/1080" // Pug wrapped in blanket
-            alt="Happy pet" 
-            className="w-full h-full object-cover"
+            src="/images/20240707_112019.jpg" // Riders on beach
+            alt="Horses on beach" 
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-stone-900/40 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-stone-900/30 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent"></div>
         </div>
         
         {/* Hero Content */}
         <div className="relative z-10 max-w-4xl mx-auto space-y-6 animate-fade-in-up">
-          <h1 className="font-serif text-4xl md:text-6xl font-bold text-white leading-tight shadow-sm">
+          <h1 className="font-serif text-4xl md:text-7xl font-bold text-white leading-tight shadow-sm drop-shadow-lg">
             Peace of Mind for <br/>
             <span className="text-brand-300">Paws, Hooves & Homes</span>
           </h1>
-          <p className="text-xl text-stone-100 max-w-2xl mx-auto font-light">
+          <p className="text-xl md:text-2xl text-stone-50 max-w-2xl mx-auto font-light drop-shadow-md">
             Professional, insured, and loving care for your animals while you're away. From stable to sofa, we've got you covered.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-            <Link to="/contact" className="px-8 py-4 bg-brand-600 text-white rounded-full font-bold text-lg hover:bg-brand-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+            <Link to="/contact" className="px-8 py-4 bg-brand-600 text-white rounded-full font-bold text-lg hover:bg-brand-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 border-2 border-brand-600">
               Book a Service
             </Link>
-            <Link to="/services" className="px-8 py-4 bg-white/90 text-brand-900 rounded-full font-bold text-lg hover:bg-white transition-all shadow-lg backdrop-blur-sm">
+            <Link to="/services" className="px-8 py-4 bg-transparent text-white border-2 border-white rounded-full font-bold text-lg hover:bg-white hover:text-brand-900 transition-all shadow-lg backdrop-blur-sm">
               View Services
             </Link>
           </div>
@@ -68,17 +69,22 @@ const Home: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {SERVICES.map((service) => (
-              <div key={service.id} className="group bg-brand-50 rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-brand-100">
-                <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mb-6 text-brand-600 shadow-sm group-hover:bg-brand-600 group-hover:text-white transition-colors">
-                  <service.icon size={32} />
+              <div key={service.id} className="group bg-brand-50 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-brand-100">
+                <div className="h-48 overflow-hidden">
+                  <img src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 </div>
-                <h3 className="font-bold text-xl text-stone-800 mb-3">{service.title}</h3>
-                <p className="text-stone-600 mb-6 text-sm leading-relaxed">
-                  {service.shortDescription}
-                </p>
-                <Link to="/services" className="inline-flex items-center text-brand-700 font-bold text-sm hover:text-brand-900">
-                  Learn More <ArrowRight size={16} className="ml-1" />
-                </Link>
+                <div className="p-6">
+                  <div className="flex items-center space-x-2 mb-3 text-brand-600">
+                    <service.icon size={20} />
+                    <h3 className="font-bold text-xl text-stone-800">{service.title}</h3>
+                  </div>
+                  <p className="text-stone-600 mb-6 text-sm leading-relaxed">
+                    {service.shortDescription}
+                  </p>
+                  <Link to="/services" className="inline-flex items-center text-brand-700 font-bold text-sm hover:text-brand-900">
+                    Learn More <ArrowRight size={16} className="ml-1" />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -103,7 +109,7 @@ const Home: React.FC = () => {
             <img 
               src={TESTIMONIALS[0].imageUrl} 
               alt={TESTIMONIALS[0].clientName} 
-              className="w-16 h-16 rounded-full border-2 border-brand-300"
+              className="w-16 h-16 rounded-full border-2 border-brand-300 object-cover"
             />
             <div className="text-left">
               <div className="font-bold text-lg">{TESTIMONIALS[0].clientName}</div>
@@ -127,7 +133,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {BLOG_POSTS.map((post) => (
+            {BLOG_POSTS.slice(0, 3).map((post) => (
               <div key={post.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                 <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
                 <div className="p-6">

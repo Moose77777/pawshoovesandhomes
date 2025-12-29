@@ -42,3 +42,10 @@ export interface BlogPost {
   date: string;
   image: string;
 }
+
+export interface GalleryItem {
+  id: number;
+  src: string;
+  category: 'Horse' | 'Dog' | 'Cat' | 'Other';
+  alt: string;
+}

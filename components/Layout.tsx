@@ -16,6 +16,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { name: 'Home', path: '/' },
     { name: 'About & Trust', path: '/about' },
     { name: 'Services & Pricing', path: '/services' },
+    { name: 'Gallery', path: '/gallery' },
     { name: 'Resources', path: '/resources' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -133,6 +134,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <h4 className="font-bold text-brand-100 mb-4 uppercase text-sm tracking-wider">Quick Links</h4>
               <ul className="space-y-2 text-stone-400 text-sm">
                 <li><Link to="/about" className="hover:text-white">About Us</Link></li>
+                <li><Link to="/gallery" className="hover:text-white">Gallery</Link></li>
                 <li><Link to="/resources" className="hover:text-white">FAQ</Link></li>
                 <li><Link to="/resources" className="hover:text-white">Policies</Link></li>
                 <li><Link to="/contact" className="hover:text-white">Service Area</Link></li>

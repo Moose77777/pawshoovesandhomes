@@ -78,7 +78,7 @@ const Resources: React.FC = () => {
               </p>
               <h3 className="font-bold text-brand-800 mb-2">Holidays</h3>
               <p>
-                A surcharge applies to major holidays (Christmas, Thanksgiving, New Year's, July 4th). Bookings for these dates should be made at least 1 month in advance.
+                A surcharge applies to major holidays (Christmas, Boxing Day, New Year's, Easter). Bookings for these dates should be made at least 1 month in advance.
               </p>
             </div>
             <div>

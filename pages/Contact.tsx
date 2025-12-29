@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Mail, Phone, Calendar } from 'lucide-react';
-import { SERVICES } from '../constants';
+import { SERVICES, EMAIL_ADDRESS, PHONE_NUMBER } from '../constants';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -42,17 +42,17 @@ const Contact: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-bold text-stone-700 mb-1">Name</label>
-                  <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="John Doe" />
+                  <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="Jane Smith" />
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-stone-700 mb-1">Phone</label>
-                  <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="(555) 123-4567" />
+                  <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder={PHONE_NUMBER} />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-bold text-stone-700 mb-1">Email</label>
-                <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="john@example.com" />
+                <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder={EMAIL_ADDRESS} />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -75,7 +75,7 @@ const Contact: React.FC = () => {
 
               <div>
                 <label className="block text-sm font-bold text-stone-700 mb-1">Requested Dates</label>
-                <input type="text" name="dates" value={formData.dates} onChange={handleChange} className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="e.g., Oct 15 - Oct 20" />
+                <input type="text" name="dates" value={formData.dates} onChange={handleChange} className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="e.g., 15 Oct - 20 Oct" />
               </div>
 
               <div>
@@ -99,7 +99,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-stone-800">Email</h3>
-                    <p className="text-stone-600">hello@pawshoovesandhomes.com</p>
+                    <p className="text-stone-600">{EMAIL_ADDRESS}</p>
                     <p className="text-stone-500 text-xs mt-1">Response time: Within 4 hours</p>
                   </div>
                </div>
@@ -109,7 +109,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-stone-800">Phone</h3>
-                    <p className="text-stone-600">(555) 123-4567</p>
+                    <p className="text-stone-600">{PHONE_NUMBER}</p>
                     <p className="text-stone-500 text-xs mt-1">Mon-Sun: 8am - 8pm</p>
                   </div>
                </div>
@@ -119,7 +119,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-stone-800">Service Area</h3>
-                    <p className="text-stone-600">Serving Greater Springfield, Oak Valley, and surrounding equestrian estates.</p>
+                    <p className="text-stone-600">Serving Grantham, Lincolnshire, and surrounding areas.</p>
                   </div>
                </div>
              </div>
@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
                />
                <div className="relative z-10 bg-white/90 px-6 py-4 rounded-lg shadow-lg text-center">
                  <h4 className="font-bold text-stone-800">Service Radius</h4>
-                 <p className="text-sm text-stone-600">20 miles from City Center</p>
+                 <p className="text-sm text-stone-600">40 miles from Grantham</p>
                  <p className="text-xs text-brand-600 mt-1">*Travel fees apply >15 miles</p>
                </div>
              </div>
