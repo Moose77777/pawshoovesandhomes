@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GALLERY_IMAGES } from '../constants';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import SEO from '../components/SEO';
+import { generateReviewSchema } from '../utils/schema';
 
 const Gallery: React.FC = () => {
   const [filter, setFilter] = useState<'All' | 'Horse' | 'Dog' | 'Cat' | 'Other'>('All');
@@ -9,6 +11,11 @@ const Gallery: React.FC = () => {
   const filteredImages = filter === 'All' 
     ? GALLERY_IMAGES 
     : GALLERY_IMAGES.filter(img => img.category === filter);
+
+  // Close lightbox if filter changes to prevent index mismatch
+  useEffect(() => {
+    setSelectedImageIndex(null);
+  }, [filter]);
 
   // Lightbox navigation handlers
   const handleNext = (e: React.MouseEvent) => {
@@ -27,11 +34,18 @@ const Gallery: React.FC = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO 
+        title="Photo Gallery | Happy Pets in Grantham"
+        description="See our happy clients! A gallery of dogs, horses, and cats enjoying our professional pet sitting and walking services across Lincolnshire."
+        canonical="/gallery"
+        schema={generateReviewSchema()}
+      />
+
       {/* Header */}
       <div className="bg-brand-900 text-white py-20 px-4 text-center">
         <h1 className="font-serif text-4xl md:text-5xl font-bold mb-4">Our Happy Clients</h1>
         <p className="text-brand-200 text-lg max-w-2xl mx-auto font-light">
-          A collection of the wonderful personalities we've had the pleasure of caring for.
+          A collection of the wonderful personalities we've had the pleasure of caring for in Grantham and beyond.
         </p>
       </div>
 
@@ -54,18 +68,25 @@ const Gallery: React.FC = () => {
         </div>
 
         {/* Masonry Grid */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
           {filteredImages.map((image, index) => (
             <div 
               key={image.id} 
-              className="break-inside-avoid group relative cursor-pointer rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+              className="break-inside-avoid mb-6 group relative cursor-pointer rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 bg-stone-200"
               onClick={() => setSelectedImageIndex(index)}
             >
               <img 
                 src={image.src} 
                 alt={image.alt} 
-                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-auto min-h-[200px] object-cover transform group-hover:scale-105 transition-transform duration-700 block"
                 loading="lazy"
+                decoding="async"
+                width="400"
+                height="300"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.opacity = '0.5'; // Dim broken images
+                  (e.target as HTMLImageElement).parentElement?.classList.add('bg-stone-300');
+                }}
               />
               {/* Overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
@@ -112,7 +133,7 @@ const Gallery: React.FC = () => {
             <img 
               src={filteredImages[selectedImageIndex].src} 
               alt={filteredImages[selectedImageIndex].alt} 
-              className="max-h-[85vh] w-auto object-contain rounded-lg shadow-2xl"
+              className="max-h-[85vh] w-auto object-contain rounded-lg shadow-2xl bg-stone-800"
             />
             <div className="mt-4 text-center">
               <p className="text-white text-lg font-medium">{filteredImages[selectedImageIndex].alt}</p>

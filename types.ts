@@ -37,7 +37,9 @@ export interface TeamMember {
 export interface BlogPost {
   id: number;
   title: string;
+  slug: string;
   excerpt: string;
+  content: string[]; // Array of paragraphs
   category: string;
   date: string;
   image: string;

@@ -3,30 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Paws, Hooves & Homes - Professional Pet Care</title>
+    
+    <!-- Primary SEO Meta Tags (Default Fallbacks) -->
+    <title>Paws, Hooves & Homes | Pet Sitter Grantham & Lincolnshire</title>
+    <meta name="description" content="Professional pet sitting, dog walking, and horse care in Grantham, Lincolnshire. 40+ years experience. Fully insured, DBS checked, and pet first aid certified." />
+    <meta name="keywords" content="Pet Sitter Grantham, Dog Walker Lincolnshire, Horse Care Grantham, Cat Sitting, House Sitting, Harriet Lightfoot" />
+    <meta name="author" content="Harriet Lightfoot" />
+    <meta name="geo.region" content="GB-LIN" />
+    <meta name="geo.placename" content="Grantham" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Paws, Hooves & Homes | Professional Pet Care Grantham" />
+    <meta property="og:description" content="Trusted animal care for your dogs, cats, and horses. Serving Grantham and surrounding villages. Book your meet & greet today." />
+    <meta property="og:image" content="/images/harriet.jpg" />
+
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <!-- INSTRUCTIONS: Replace 'G-XXXXXXXXXX' with your actual Measurement ID -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> 
+    -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
               brand: {
-                50: '#fcf9f2',
-                100: '#f7f1df',
-                200: '#efe0bb',
-                300: '#e5ca92',
-                400: '#dcb06d',
-                500: '#d4964d', // Base Tan/Orange
-                600: '#b8763d',
-                700: '#935833',
-                800: '#8b6f47', // Warm Brown
-                900: '#643d26',
+                50: '#F9F7E8',  // Cream (Background)
+                100: '#F2EED9', // Darker Cream
+                200: '#E5DEBF',
+                300: '#D9C58B', // Golden Tan (Accents)
+                400: '#A5A66E',
+                500: '#718252', // Sage Green (Primary Brand Color)
+                600: '#5A6841', // Darker Sage (Hover)
+                700: '#444E31',
+                800: '#2D3420', // Text Color
+                900: '#1A1E12', // Darkest (Footer)
               }
             },
             fontFamily: {
               sans: ['Nunito', 'sans-serif'],
               serif: ['Lora', 'serif'],
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+              'bounce-slow': 'bounce 3s infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              }
             }
           }
         }
@@ -42,12 +86,70 @@
     "react-router-dom": "https://esm.sh/react-router-dom@6.23.0?deps=react@18.3.1,react-dom@18.3.1",
     "recharts": "https://esm.sh/recharts@2.12.7?deps=react@18.3.1,react-dom@18.3.1",
     "lucide-react": "https://esm.sh/lucide-react@0.378.0?deps=react@18.3.1",
-    "@headlessui/react": "https://esm.sh/@headlessui/react@1.7.19?deps=react@18.3.1,react-dom@18.3.1"
+    "@headlessui/react": "https://esm.sh/@headlessui/react@1.7.19?deps=react@18.3.1,react-dom@18.3.1",
+    "react-helmet-async": "https://esm.sh/react-helmet-async@2.0.5?deps=react@18.3.1,react-dom@18.3.1"
   }
 }
 </script>
+
+<!-- Structured Data (Schema.org) for Local SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Paws, Hooves & Homes",
+  "image": "https://paws-hooves-homes.com/images/harriet.jpg",
+  "telephone": "07711 865958",
+  "email": "philandhdiary@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Grantham",
+    "addressRegion": "Lincolnshire",
+    "addressCountry": "UK"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 52.9122, 
+    "longitude": -0.6387
+  },
+  "url": "https://paws-hooves-homes.com",
+  "priceRange": "£",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Grantham"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Lincolnshire"
+    },
+    {
+      "@type": "Place",
+      "name": "Vale of Belvoir"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/pawshoovesandhomes",
+    "https://www.instagram.com/pawshoovesandhomes"
+  ]
+}
+</script>
 </head>
-  <body class="bg-brand-50 text-stone-800 antialiased selection:bg-brand-200">
+  <body class="bg-brand-50 text-brand-800 antialiased selection:bg-brand-300 selection:text-brand-900">
     <div id="root"></div>
   </body>
 </html>

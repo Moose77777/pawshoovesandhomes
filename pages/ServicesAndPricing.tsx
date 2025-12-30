@@ -1,126 +1,108 @@
-import React, { useState } from 'react';
-import { SERVICES } from '../constants';
-import { CheckCircle, AlertCircle } from 'lucide-react';
+import React from 'react';
+import { SERVICES, COMPANY_NAME } from '../constants';
+import { CheckCircle, AlertCircle, Calendar, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
+import { generateServiceSchema } from '../utils/schema';
 
 const ServicesAndPricing: React.FC = () => {
-  const [activeTab, setActiveTab] = useState(SERVICES[0].id);
-  const activeService = SERVICES.find(s => s.id === activeTab) || SERVICES[0];
-
   return (
-    <div className="bg-white">
+    <div className="bg-brand-50">
+      <SEO 
+        title="Pet Sitting Prices Grantham | Dog Walking & Horse Care Rates"
+        description="Transparent pricing for Dog Walking, Horse Care, and House Sitting in Grantham. Competitive rates starting from £12 per visit."
+        canonical="/services"
+        schema={generateServiceSchema()}
+      />
+
       {/* Header */}
-      <div className="bg-brand-100 py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="font-serif text-4xl font-bold text-brand-900 mb-4">Services & Pricing</h1>
-          <p className="text-brand-800 text-lg max-w-2xl mx-auto">
-            Transparent pricing for exceptional care. No hidden fees, just happy pets.
+      <div className="bg-brand-900 py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-white/5 pattern-dots"></div>
+        <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-brand-50 mb-6">Services & Pricing</h1>
+          <p className="text-brand-200 text-lg max-w-2xl mx-auto font-light leading-relaxed">
+            Transparent pricing for exceptional care. No hidden fees, just happy pets in Grantham, Stamford, Bourne, and the Vale of Belvoir.
           </p>
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {SERVICES.map((service) => (
-            <button
-              key={service.id}
-              onClick={() => setActiveTab(service.id)}
-              className={`px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all ${
-                activeTab === service.id
-                  ? 'bg-brand-600 text-white shadow-lg transform scale-105'
-                  : 'bg-stone-100 text-stone-600 hover:bg-brand-50 hover:text-brand-700'
-              }`}
-            >
-              <div className="flex items-center space-x-2">
-                <service.icon size={18} />
-                <span>{service.title}</span>
+      {/* Pricing Cards Grid */}
+      <div className="max-w-7xl mx-auto px-4 py-16 -mt-10 relative z-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {SERVICES.map((service, index) => (
+            <div key={service.id} className="bg-white rounded-2xl shadow-lg overflow-hidden border border-brand-100 flex flex-col hover:shadow-2xl transition-shadow duration-300">
+              {/* Card Image */}
+              <div className="h-48 overflow-hidden relative group">
+                <div className="absolute inset-0 bg-brand-900/20 group-hover:bg-transparent transition-colors z-10"></div>
+                <img 
+                  src={service.image} 
+                  alt={service.title} 
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  width="400"
+                  height="300" 
+                />
+                <div className="absolute top-4 right-4 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full z-20 shadow-md">
+                   {service.title.split(' ')[0]}
+                </div>
               </div>
-            </button>
+
+              {/* Card Content */}
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="font-serif text-xl font-bold text-brand-900 mb-2">{service.title}</h3>
+                <p className="text-brand-600 text-sm mb-6 flex-grow leading-relaxed">
+                  {service.shortDescription}
+                </p>
+
+                <div className="bg-brand-50 rounded-lg p-4 mb-6">
+                  <span className="block text-xs text-brand-500 uppercase tracking-wide font-bold mb-1">Starting At</span>
+                  <div className="flex items-baseline">
+                    <span className="text-2xl font-bold text-brand-800">{service.price}</span>
+                  </div>
+                  <span className="text-xs text-brand-400 mt-1 block">{service.duration}</span>
+                </div>
+
+                <div className="space-y-3 mb-8">
+                  {service.features.slice(0, 4).map((feature, idx) => (
+                    <div key={idx} className="flex items-start text-sm text-stone-600">
+                      <CheckCircle size={16} className="text-brand-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Link 
+                  to="/contact" 
+                  className="w-full block text-center bg-brand-900 text-brand-50 py-3 rounded-lg font-bold hover:bg-brand-700 transition-colors mt-auto"
+                >
+                  Book Now
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
+      </div>
 
-        {/* Content Area */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start animate-fade-in">
-          {/* Left: Details */}
-          <div>
-            <img 
-              src={activeService.image} 
-              alt={activeService.title} 
-              className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg mb-8"
-            />
-            <h2 className="font-serif text-3xl font-bold text-stone-800 mb-4">{activeService.title}</h2>
-            <div className="space-y-4 text-stone-600 mb-8">
-              {activeService.fullDescription.map((desc, idx) => (
-                <p key={idx}>{desc}</p>
-              ))}
+      {/* Additional Info Section */}
+      <div className="max-w-4xl mx-auto px-4 py-16">
+         <div className="bg-white rounded-2xl p-8 shadow-sm border border-brand-100 flex flex-col md:flex-row gap-8 items-center">
+            <div className="bg-brand-100 p-4 rounded-full">
+              <AlertCircle size={32} className="text-brand-600" />
             </div>
-            
-            <h3 className="font-bold text-lg text-brand-800 mb-4">What's Included:</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {activeService.features.map((feature, idx) => (
-                <div key={idx} className="flex items-center text-stone-700">
-                  <CheckCircle size={20} className="text-green-500 mr-2 flex-shrink-0" />
-                  <span>{feature}</span>
-                </div>
-              ))}
+            <div className="flex-grow">
+               <h3 className="font-serif text-2xl font-bold text-brand-900 mb-2">Need something custom?</h3>
+               <p className="text-stone-600 mb-4">
+                 Every animal is unique. We offer tailored packages for multi-pet households in Grantham, elderly animals requiring medication, or long-term farm sitting in rural Lincolnshire.
+               </p>
+               <div className="flex flex-wrap gap-4 text-sm text-brand-700 font-medium">
+                 <span className="flex items-center"><CheckCircle size={16} className="mr-1"/> Medication Administration</span>
+                 <span className="flex items-center"><CheckCircle size={16} className="mr-1"/> Plant Watering</span>
+                 <span className="flex items-center"><CheckCircle size={16} className="mr-1"/> Key Holding</span>
+               </div>
             </div>
-          </div>
-
-          {/* Right: Pricing Table */}
-          <div className="bg-stone-50 rounded-2xl p-8 border border-stone-200 shadow-sm">
-            <h3 className="font-serif text-2xl font-bold text-stone-800 mb-6 border-b border-stone-200 pb-4">
-              Pricing Options
-            </h3>
-            
-            <table className="w-full mb-8 text-left">
-              <thead>
-                <tr className="text-stone-500 text-sm uppercase tracking-wider">
-                  <th className="pb-4">Service Type</th>
-                  <th className="pb-4 text-right">Rate</th>
-                </tr>
-              </thead>
-              <tbody className="space-y-4">
-                <tr className="border-b border-stone-200">
-                  <td className="py-4 font-bold text-stone-800">Standard Visit ({activeService.duration})</td>
-                  <td className="py-4 text-right text-brand-700 font-bold">{activeService.price}</td>
-                </tr>
-                <tr className="border-b border-stone-200">
-                  <td className="py-4 font-bold text-stone-800">Holiday Rate</td>
-                  <td className="py-4 text-right text-stone-600">+£10 / visit</td>
-                </tr>
-                <tr className="border-b border-stone-200">
-                  <td className="py-4 font-bold text-stone-800">Additional Pet</td>
-                  <td className="py-4 text-right text-stone-600">+£5 / pet</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div className="bg-brand-50 p-4 rounded-lg mb-8">
-              <h4 className="font-bold text-brand-800 mb-2 flex items-center">
-                <AlertCircle size={18} className="mr-2" />
-                Add-On Services
-              </h4>
-              <ul className="text-sm text-brand-900 space-y-1">
-                <li>• Medication Administration: +£5/visit</li>
-                <li>• Plant Watering (Excessive): +£10/visit</li>
-                <li>• Key Pickup/Dropoff: £15</li>
-              </ul>
-            </div>
-
-            <div className="text-center">
-              <Link 
-                to="/contact" 
-                className="block w-full py-4 bg-brand-600 text-white rounded-lg font-bold hover:bg-brand-700 transition-colors shadow-md"
-              >
-                Book {activeService.title}
-              </Link>
-              <p className="text-xs text-stone-500 mt-4">
-                *Prices subject to change based on location and specific needs.
-              </p>
-            </div>
-          </div>
-        </div>
+            <Link to="/contact" className="whitespace-nowrap px-6 py-3 border-2 border-brand-500 text-brand-600 font-bold rounded-full hover:bg-brand-500 hover:text-white transition-colors">
+              Contact Us
+            </Link>
+         </div>
       </div>
     </div>
   );
